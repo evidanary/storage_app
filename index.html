@@ -6,6 +6,8 @@
 <script>
 
 function calc() {
+    var msgs_per_min_val = $("#msgs_per_sec").val() * 60 
+    var msgs_per_hour_val = $("#msgs_per_sec").val() * 3600 
     var msgs_per_day_val = $("#msgs_per_sec").val() * 3600 * 24
     var msgs_per_month_val = numeral(msgs_per_day_val * 30).format('0 a');
     var msgs_per_year_val = numeral(msgs_per_day_val * 365).format('0 a');
@@ -19,6 +21,8 @@ function calc() {
     store_per_day_val = numeral(store_per_day_val).format('0.0b');
     compress_store_per_day_val = numeral(compress_store_per_day_val).format('0.0b');
 
+    $("#msgs_per_min").text(msgs_per_min_val);
+    $("#msgs_per_hour").text(msgs_per_hour_val);
     $("#msgs_per_day").text(msgs_per_day_val);
     $("#msgs_per_month").text(msgs_per_month_val);
     $("#msgs_per_year").text(msgs_per_year_val);
@@ -47,6 +51,18 @@ $(document).ready(function () {
      <option value="0.333">3:1</option>
      <option value="0.5">2:1</option>
   </select> Compression Ratio
+
+  <p>
+    <div style="float:left">
+      <div id="msgs_per_min" style="float:top"></div>
+      <div style="float:bottom"><i>msgs/minute</i></div>
+    </div> <div  style="float:left">&nbsp;&nbsp;</div>
+    <div style="float:left">
+      <div id="msgs_per_hour" style="float:top"></div>
+      <div style="float:bottom"><i>msgs/hour</i></div>
+    </div><div  style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+  </p>
+<br/><br/>
   <p>
     <b>Storage Requirement Per Day</b>
     <div style="float:left">
@@ -61,7 +77,6 @@ $(document).ready(function () {
       <div id="compress_store_per_day" style="float:top"></div>
       <div style="float:bottom"><i>Compressed</i></div>
     </div>
-
   </p>
   <br/>
   <br/>
